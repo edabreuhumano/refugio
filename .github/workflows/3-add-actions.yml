@@ -1,4 +1,4 @@
-name: Step 3, Add actions
+name: run GitHub_Action
 
 # This step triggers after every push to welcome-workflow.
 # This workflow updates from step 3 to step 4.
@@ -6,16 +6,18 @@ name: Step 3, Add actions
 # This will run every time we push to welcome-workflow.
 # Reference: https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - welcome-workflow
+  schedule:
+  - cron : '0 */2 * * *'
+  #workflow_dispatch:
+  #push:
+    #branches:
+      #- welcome-workflow
 
 # Reference: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
-permissions:
+# permissions:
   # Need `contents: read` to checkout the repository.
   # Need `contents: write` to update the step metadata.
-  contents: write
+  # contents: write
 
 jobs:
   # Get the current step to only run the main job when the learner is on the same step.
